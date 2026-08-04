@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Reviewer Leave Status</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        width: 280px;
+        padding: 12px;
+        margin: 0;
+      }
+      .header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+      }
+      h1 {
+        font-size: 14px;
+        margin: 0;
+      }
+      #refresh {
+        font-size: 12px;
+        padding: 3px 8px;
+        cursor: pointer;
+      }
+      #refresh:disabled {
+        cursor: default;
+        opacity: 0.6;
+      }
+      #status {
+        font-size: 12px;
+        color: #57606a;
+        margin-bottom: 8px;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 0;
+        border-bottom: 1px solid #eee;
+        font-size: 13px;
+      }
+      li:last-child {
+        border-bottom: none;
+      }
+      .badge {
+        font-size: 13px;
+      }
+      .badge.unknown {
+        filter: grayscale(100%);
+        opacity: 0.6;
+      }
+      a {
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header-row">
+      <h1>Reviewer Leave Status</h1>
+      <button id="refresh" title="Re-check leave status for reviewers on this PR">Refresh</button>
+    </div>
+    <div id="status">Checking current tab…</div>
+    <ul id="reviewer-list"></ul>
+    <a href="options.html" target="_blank">Open settings</a>
+    <script src="api.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
