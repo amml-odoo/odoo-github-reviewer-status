@@ -1,4 +1,6 @@
-importScripts("api.js");
+// Chrome runs this as a service worker; Firefox loads api.js itself via
+// background.scripts, where importScripts does not exist.
+if (typeof importScripts === "function") importScripts("api.js");
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.get({ odooBaseUrl: DEFAULT_ODOO_BASE_URL, enabled: true }, (items) => {

@@ -1,12 +1,12 @@
 # GitHub Reviewer Leave Status
 
-Chrome extension that shows a 🌴 On Leave / ✅ Available / ❓ Unknown badge
+Chrome and Firefox extension that shows a 🌴 On Leave / ✅ Available / ❓ Unknown badge
 next to each reviewer's name on a GitHub pull request page, using live leave
 data from Odoo — no separate backend server required.
 
 ```
 Github Extension/
-└── extension/       # the Chrome extension (load this in chrome://extensions)
+└── extension/       # the extension (one source for Chrome and Firefox)
 ```
 
 Extension icon is the 🌴 emoji from [Twemoji](https://github.com/twitter/twemoji) (CC-BY 4.0, graphics by Twitter).
@@ -77,7 +77,9 @@ fetch("https://www.odoo.com/web/dataset/call_kw", {
 - If you see the "Log into Odoo" banner on GitHub PR pages, you're not
   logged into `https://www.odoo.com` in this browser.
 
-## 1. Load the extension in Chrome
+## 1. Load the extension
+
+### Chrome
 
 1. Open `chrome://extensions`
 2. Enable **Developer mode** (top right)
@@ -85,6 +87,15 @@ fetch("https://www.odoo.com/web/dataset/call_kw", {
 4. Select the `Github Extension/extension` folder
 
 The extension icon should appear in your toolbar.
+
+### Firefox (140 or later)
+
+1. Open `about:debugging#/runtime/this-firefox`
+2. Click **Load Temporary Add-on…**
+3. Select `extension/manifest.json`
+
+Firefox drops temporary add-ons on restart. `web-ext lint` warns that
+`background.service_worker` is unsupported: Chrome needs it, Firefox ignores it.
 
 ## 2. Test it
 
@@ -113,7 +124,8 @@ The extension icon should appear in your toolbar.
    clear it.
 8. If badges don't appear, check the background service worker's console:
    `chrome://extensions` → the extension → "service worker" link. RPC/auth
-   errors are logged there.
+   errors are logged there. In Firefox: `about:debugging` → the extension →
+   **Inspect**.
 
 ## Deployment
 
